@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liceo de Cagayan Canteen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #c2101e, #616579);
+            color: #333;
+            overflow-y: auto; /* Allow vertical scrolling */
+            height: 100vh; /* Full height for scrolling */
+            margin: 0; /* Remove default margin */
+        }
+
+        header {
+            background-color: #460e08;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .menu {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            max-height: 80vh; /* Limit height for scrolling */
+            overflow-y: auto; /* Enable scrolling within the menu */
+        }
+
+        .menu h2 {
+            color: #580b02;
+        }
+
+        .food-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .food-item img {
+            width: 50px; /* Uniform width */
+            height: 50px; /* Uniform height */
+            margin-right: 10px;
+            object-fit: cover; /* Maintain aspect ratio */
+            border: 2px solid red; /* Red border */
+            transition: border-color 0.3s ease; /* Transition for border color */
+        }
+
+        .food-item:hover img {
+            border-color: gray; /* Change border color on hover */
+        }
+
+        .food-item label {
+            cursor: pointer; /* Change cursor to pointer */
+            transition: color 0.3s ease; /* Transition for text color */
+        }
+
+        .food-item label:hover {
+            color: #3b0a04; /* Change text color on hover */
+        }
+
+        .order-summary {
+            text-align: center;
+            margin-top: 20px;
+            border: 3px solid darkred; /* Dark red border */
+            border-radius: 8px;
+            padding: 20px;
+            background: linear-gradient(135deg, #460e08, #616579); /* Background blend */
+        }
+
+        .order-summary #summary {
+            border: 2px solid gray; /* Gray border for summary */
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: white; /* White background for readability */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="LICEOLOGO.png" alt="Liceo de Cagayan Logo" class="logo">
+        <h1>Welcome to Liceo de Cagayan Canteen</h1>
+    </header>
+    <main>
+        <section class="menu">
+            <h2>LUNCH/SNACK</h2>
+            <div class="food-item">
+                <img src="PANCIT CANTON.jpg" alt="PANCIT CANTON">
+                <label><input type="checkbox" value="25.00"> PANCIT CANTON - P25.00</label>
+            </div>
+            <div class="food-item">
+                <img src="JUNKFOODS.jpg" alt="junkfoods">
+                <label><input type="checkbox" value="10"> junkfoods - P10.00</label>
+            </div>
+            <div class="food-item">
+                <img src="TSAMPORADO.jpg" alt="TSAMPORADO">
+                <label><input type="checkbox" value="20.00"> TSAMPORADO - P20.00</label>
+            </div>
+            <div class="food-item">
+                <img src="BINIGNIT.jpg" alt="BINIGNIT">
+                <label><input type="checkbox" value="20:00"> BINIGNIT - P20.00</label>
+            </div>
+            <div class="food-item">
+                <img src="PATIR.jpg" alt="PATIR">
+                <label><input type="checkbox" value="25:00"> PATER - P25.00</label>
+            </div>
+            <div class="food-item">
+                <img src="RICE.jpg" alt="RICE">
+                <label><input type="checkbox" value="10.00"> RICE - P10.00</label>
+            </div>
+            <div class="food-item">
+                <img src="COOKIES.jpg" alt="COOKIES">
+                <label><input type="checkbox" value="10.00"> COOKIES - P10.00</label>
+            </div>
+            <div class="food-item">
+                <img src="ICE CREAM.jpg" alt="ICECREAM">
+                <label><input type="checkbox" value="25.00"> ICECREAM - P25.00</label>
+            </div>
+            <div class="food-item">
+                <img src="MILK BAR.jpg" alt="MILKBAR">
+                <label><input type="checkbox" value="10.00"> MILKBAR - P10.00</label>
+            </div>
+            <h2>Drinks</h2>
+            <div class="food-item">
+                <img src="COKE.webp" alt="COKE">
+                <label><input type="checkbox" value="25.00"> COKE - P25.00</label>
+            </div>
+            <div class="food-item">
+                <img src="ROYAL.jpg" alt="ROYAL">
+                <label><input type="checkbox" value="25.00"> ROYAL - P25.00</label>
+            </div>
+            <div class="food-item">
+                <img src="SPRITE.webp" alt="SPRITE">
+                <label><input type="checkbox" value="25.00"> SPRITE - P25.00</label>
+            </div>
+            <div class="food-item">
+                <img src="ZESTO.jpg" alt="zesto">
+                <label><input type="checkbox" value="20.00"> ZESTO - P20.00</label>
+            </div>
+            <div class="food-item">
+                <img src="MILK TEA.jpg" alt="MILK TEA">
+                <label><input type="checkbox" value="30"> MILK TEA - P30.00</label>
+            </div>
+            <div class="food-item">
+                <img src="WATER.jpg" alt="WATER">
+                <label><input type="checkbox" value="10.00"> WATER - P10.00 </label>
+            </div>
+        </section>
+        <section class="order-summary">
+            <button id="orderButton">Place Order</button>
+            <div id="summary" class="hidden">
+                <p>Thank you for buying!</p>
+                <p>Your total is: <span id="totalPrice">$0.00</span></p>
+                <p>Your waiting number is: <span id="waitingNumber"></span></p>
+            </div>
+        </section>
+    </main>
+    <script> 
+        document.getElementById('orderButton').addEventListener('click', function() {
+            const total = calculateTotal();
+            const waitingNumber = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('waitingNumber').innerText = waitingNumber;
+            document.getElementById('summary').classList.remove('hidden');
+        });
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.menu input[type="checkbox"]:checked');
+            let total = 0;
+            checkboxes.forEach((checkbox) => {
+                total += parseFloat(checkbox.value);
+            });
+            return total; 
+        }
+    </script>
+</body>
+</html>
